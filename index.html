@@ -127,12 +127,14 @@
     </footer>
 
     <script>
-        // Database of products
+
+
+// Base de datos de productos
 const products = [
-    { category: 'Tecnología', name: 'Auriculares Noise-Cancelling', badge: 'Nuevo', desc: 'Calidad de sonido premium con cancelación activa.', price: '110€' },
-    { category: 'Tecnología', name: 'Smartwatch Pro', desc: 'Controla tu salud y notificaciones en tu muñeca.', price: '89€' },
-    { category: 'Hogar', name: 'Robot Aspirador X1', badge: 'Rebajado', desc: 'Limpieza autónoma, olvídate de barrer.', price: '250€' },
-    { category: 'Fitness', name: 'Set de Mancuernas Ajustables', desc: 'Tu gimnasio personal en casa.', price: '45€' }
+    { category: 'Tecnología', name: 'Auriculares Noise-Cancelling', badge: 'Nuevo', badgeBottom: 'Recomendado', desc: 'Calidad de sonido premium con cancelación activa.', price: '110€', amazonLink: 'https://amzn.to/4puMVze', imageUrl: 'https://m.media-amazon.com/images/I/71aUwxmG60L._AC_SX679_.jpg' },
+    { category: 'Tecnología', name: 'Smartwatch Pro', desc: 'Controla tu salud y notificaciones en tu muñeca.', price: '89€', amazonLink: 'https://amzn.to/TU_ENLACE_AQUI_2', imageUrl: 'https://m.media-amazon.com/images/I/71vC0cU6x-L._AC_SX679_.jpg' },
+    { category: 'Hogar', name: 'Robot Aspirador X1', badge: 'Rebajado', desc: 'Limpieza autónoma, olvídate de barrer.', price: '250€', amazonLink: 'https://amzn.to/TU_ENLACE_AQUI_3', imageUrl: 'https://m.media-amazon.com/images/I/71zvLQ2QJBL._AC_SX679_.jpg' },
+    { category: 'Fitness', name: 'Set de Mancuernas Ajustables', desc: 'Tu gimnasio personal en casa.', price: '45€', amazonLink: 'https://amzn.to/TU_ENLACE_AQUI_4', imageUrl: 'https://m.media-amazon.com/images/I/71V1Zq9VxBL._AC_SX679_.jpg' }
 ];
 
 function showSection(id) {
@@ -150,28 +152,35 @@ function filterProducts(category) {
     list.innerHTML = '';
     
     const filtered = products.filter(p => p.category === category);
-    
+
     filtered.forEach(p => {
-        // Lógica: Si el producto tiene un badge, creamos el HTML. Si no, lo dejamos vacío.
+
         const badgeHtml = p.badge 
             ? `<span class="absolute top-4 left-4 bg-yellow-400 text-black text-[10px] font-bold px-3 py-1 rounded-full shadow-lg z-10 uppercase tracking-wider">${p.badge}</span>` 
             : '';
-        
-        // Importante: La clase 'relative' en el div principal es necesaria para que el badge se posicione bien.
-        list.innerHTML += `
+
+        const badgeBottom = p.badgeBottom
+            ? `<span class="absolute bottom-4 left-4 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg z-10 uppercase tracking-wider">${p.badgeBottom}</span>`
+            : '';
+
+        list.insertAdjacentHTML('beforeend', `
             <div class="relative border rounded-2xl p-6 shadow-sm hover:shadow-md transition bg-white">
                 ${badgeHtml}
-                <img src="https://placehold.co/300x200/e2e8f0/1e293b?text=${p.name}" class="mb-4 rounded-lg w-full">
+                <img src="${p.imageUrl}" alt="${p.name}" class="mb-4 rounded-lg w-full h-48 object-cover">
+                ${badgeBottom}
                 <h4 class="font-bold text-lg mb-2">${p.name}</h4>
                 <p class="text-sm text-gray-600 mb-4">${p.desc}</p>
                 <p class="font-bold text-blue-900 mb-4">Precio: ${p.price}</p>
-                <a href="#" class="block text-center amazon-btn text-white font-bold py-3 rounded-lg">Ver en Amazon</a>
+                <a href="${p.amazonLink}" target="_blank" rel="nofollow noopener" class="block text-center amazon-btn text-white font-bold py-3 rounded-lg">Ver en Amazon</a>
             </div>
-        `;
+        `);
     });
 }
 
-        
+
+
+
+
     </script>
 </body>
 </html>
