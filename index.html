@@ -1,61 +1,168 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Woldtrip - En Construcción</title>
+    <title>TopSelección | Guías de Compra Expertas 2024</title>
+    <meta name="description" content="Tu guía de confianza para encontrar los mejores productos en Amazon. Análisis, comparativas y recomendaciones honestas.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #0a0a0a;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
-        .container {
-            max-width: 600px;
-            padding: 20px;
-        }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            color: #4db8ff;
-        }
-        p {
-            font-size: 1.2rem;
-            opacity: 0.8;
-        }
-        .loader {
-            margin: 30px auto;
-            border: 6px solid #333;
-            border-top: 6px solid #4db8ff;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1.2s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        footer {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            opacity: 0.6;
-        }
+        body { font-family: 'Inter', sans-serif; }
+        .amazon-btn { background-color: #FF9900; transition: transform 0.2s; }
+        .amazon-btn:hover { background-color: #e68a00; transform: scale(1.02); }
+        .view-section { display: none; }
+        .view-section.active { display: block; }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>Woldtrip</h1>
-        <p>Estamos construyendo algo increíble para tus próximos viajes.</p>
-        <div class="loader"></div>
-        <footer>© 2026 Woldtrip.es</footer>
-    </div>
+<body class="bg-gray-50 text-gray-800">
+
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" onclick="showSection('home')" class="text-2xl font-bold text-blue-900 cursor-pointer">TopSelección</a>
+            <div class="hidden md:flex space-x-6 font-medium text-gray-600">
+                <a href="#" onclick="showSection('home')" class="hover:text-blue-600 cursor-pointer">Inicio</a>
+                <a href="#" onclick="showSection('categories')" class="hover:text-blue-600 cursor-pointer">Categorías</a>
+                <a href="#" onclick="showSection('blog')" class="hover:text-blue-600 cursor-pointer">Blog</a>
+                <a href="#" onclick="showSection('about')" class="hover:text-blue-600 cursor-pointer">Nosotros</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="content" class="min-h-screen">
+        
+        <!-- SECTION: HOME -->
+        <section id="home" class="view-section active">
+            <header class="bg-blue-900 text-white py-20 px-4 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">Comprar con inteligencia empieza aquí</h1>
+                <p class="text-xl mb-10 text-gray-200 max-w-2xl mx-auto">Analizamos, probamos y seleccionamos los mejores productos de Amazon para que tú solo tengas que disfrutar de tu compra.</p>
+                <button onclick="showSection('categories')" class="bg-white text-blue-900 px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:bg-gray-100 transition">Ver productos recomendados</button>
+            </header>
+            
+            <div class="py-16 max-w-6xl mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-8">¿Por qué confiar en nosotros?</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-4xl mb-4 block">✅</span>
+                        <h3 class="font-bold mb-2">Análisis objetivo</h3>
+                        <p class="text-gray-600">Probamos cada producto para darte opiniones reales.</p>
+                    </div>
+                    <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-4xl mb-4 block">🚚</span>
+                        <h3 class="font-bold mb-2">Envío Amazon</h3>
+                        <p class="text-gray-600">Compra con la seguridad y rapidez de Amazon.</p>
+                    </div>
+                    <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-4xl mb-4 block">💰</span>
+                        <h3 class="font-bold mb-2">Ahorro garantizado</h3>
+                        <p class="text-gray-600">Buscamos siempre la mejor relación calidad-precio.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="categories" class="view-section py-16 max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Explora nuestras categorías</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Data categories -->
+                <div onclick="filterProducts('Tecnología')" class="p-6 bg-white rounded-xl shadow-sm text-center border hover:border-blue-500 cursor-pointer transition">
+                    <span class="text-4xl mb-4 block">💻</span>
+                    <p class="font-semibold">Tecnología</p>
+                </div>
+                <div onclick="filterProducts('Hogar')" class="p-6 bg-white rounded-xl shadow-sm text-center border hover:border-blue-500 cursor-pointer transition">
+                    <span class="text-4xl mb-4 block">🏠</span>
+                    <p class="font-semibold">Hogar</p>
+                </div>
+                <div onclick="filterProducts('Fitness')" class="p-6 bg-white rounded-xl shadow-sm text-center border hover:border-blue-500 cursor-pointer transition">
+                    <span class="text-4xl mb-4 block">🏋️</span>
+                    <p class="font-semibold">Fitness</p>
+                </div>
+                <div onclick="filterProducts('Mascotas')" class="p-6 bg-white rounded-xl shadow-sm text-center border hover:border-blue-500 cursor-pointer transition">
+                    <span class="text-4xl mb-4 block">🐾</span>
+                    <p class="font-semibold">Mascotas</p>
+                </div>
+            </div>
+            
+            <div id="product-container" class="mt-16 hidden">
+                <h3 id="category-title" class="text-2xl font-bold mb-8">Productos</h3>
+                <div id="product-list" class="grid md:grid-cols-3 gap-8">
+                    <!-- Products injected here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="view-section py-16 max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center">Nuestro Blog</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <article class="border rounded-2xl p-6 shadow-sm hover:shadow-md transition">
+                    <h3 class="font-bold text-xl mb-2">Los 10 mejores gadgets para 2024</h3>
+                    <p class="text-gray-600 mb-4">Descubre la tecnología que está cambiando nuestra forma de vivir este año.</p>
+                    <a href="#" class="text-blue-600 font-semibold hover:underline">Leer artículo →</a>
+                </article>
+                <article class="border rounded-2xl p-6 shadow-sm hover:shadow-md transition">
+                    <h3 class="font-bold text-xl mb-2">Cómo elegir el mejor robot aspirador</h3>
+                    <p class="text-gray-600 mb-4">Guía completa para no equivocarte en tu compra y ahorrar tiempo en casa.</p>
+                    <a href="#" class="text-blue-600 font-semibold hover:underline">Leer artículo →</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="about" class="view-section py-16 max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-6">Sobre nosotros</h2>
+            <div class="prose text-gray-600 space-y-4">
+                <p>En <strong>TopSelección</strong>, nos apasiona la tecnología y la calidad de vida. Nuestro objetivo es ayudarte a filtrar el ruido de Amazon para que encuentres exactamente lo que necesitas.</p>
+                <h3 class="text-xl font-bold text-gray-800">Transparencia</h3>
+                <p>Participamos en el Programa de Afiliados de Amazon. Esto significa que si compras a través de nuestros enlaces, recibimos una pequeña comisión sin coste adicional para ti. Esto nos permite seguir creando contenido gratuito y de calidad.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 py-12 text-sm">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="mb-6 max-w-3xl mx-auto">
+                TopSelección es un sitio web de recomendaciones. Política de Privacidad | Cookies | Aviso Legal.
+            </p>
+            <p>© 2024 TopSelección. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Database of products
+        const products = [
+            { category: 'Tecnología', name: 'Auriculares Noise-Cancelling', desc: 'Calidad de sonido premium con cancelación activa.', price: '120€' },
+            { category: 'Tecnología', name: 'Smartwatch Pro', desc: 'Controla tu salud y notificaciones en tu muñeca.', price: '89€' },
+            { category: 'Hogar', name: 'Robot Aspirador X1', desc: 'Limpieza autónoma, olvídate de barrer.', price: '250€' },
+            { category: 'Fitness', name: 'Set de Mancuernas Ajustables', desc: 'Tu gimnasio personal en casa.', price: '45€' }
+        ];
+
+        function showSection(id) {
+            document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        function filterProducts(category) {
+            const container = document.getElementById('product-container');
+            const list = document.getElementById('product-list');
+            const title = document.getElementById('category-title');
+            
+            container.classList.remove('hidden');
+            title.innerText = `Productos en ${category}`;
+            list.innerHTML = '';
+            
+            const filtered = products.filter(p => p.category === category);
+            
+            filtered.forEach(p => {
+                list.innerHTML += `
+                    <div class="border rounded-2xl p-6 shadow-sm hover:shadow-md transition bg-white">
+                        <img src="https://placehold.co/300x200/e2e8f0/1e293b?text=${p.name}" class="mb-4 rounded-lg w-full">
+                        <h4 class="font-bold text-lg mb-2">${p.name}</h4>
+                        <p class="text-sm text-gray-600 mb-4">${p.desc}</p>
+                        <p class="font-bold text-blue-900 mb-4">Precio: ${p.price}</p>
+                        <a href="#" class="block text-center amazon-btn text-white font-bold py-3 rounded-lg">Ver en Amazon</a>
+                    </div>
+                `;
+            });
+        }
+    </script>
 </body>
 </html>
