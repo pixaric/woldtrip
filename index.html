@@ -85,7 +85,7 @@
             
             <div id="product-container" class="mt-16 hidden">
                 <h3 id="category-title" class="text-2xl font-bold mb-8">Productos</h3>
-                <div id="product-list" class="grid md:grid-cols-3 gap-8">
+                <div id="product-list" class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6"></div>
                     <!-- Products injected here -->
                 </div>
             </div>
@@ -170,43 +170,30 @@ function filterProducts(category) {
     const list = document.getElementById('product-list');
     const title = document.getElementById('category-title');
     
-    // Mostramos el contenedor y cambiamos el título
     container.classList.remove('hidden');
     title.innerText = `Productos en ${category}`;
     list.innerHTML = '';
     
     const filtered = products.filter(p => p.category === category);
-
+    
     filtered.forEach(p => {
-
         const badgeHtml = p.badge 
-            ? `<span class="absolute top-4 left-4 bg-yellow-400 text-black text-[10px] font-bold px-3 py-1 rounded-full shadow-lg z-10 uppercase tracking-wider">${p.badge}</span>` 
+            ? `<span class="absolute top-2 left-2 md:top-4 md:left-4 bg-yellow-400 text-black text-[9px] md:text-[10px] font-bold px-2 py-0.5 md:px-3 md:py-1 rounded-full shadow-lg z-10 uppercase tracking-wider">${p.badge}</span>` 
             : '';
-
-        const badgeBottom = p.badgeBottom
-            ? `<span class="absolute bottom-4 left-4 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg z-10 uppercase tracking-wider">${p.badgeBottom}</span>`
-            : '';
-
-        list.insertAdjacentHTML('beforeend', `
-    <div class="relative border rounded-2xl p-6 shadow-sm hover:shadow-md transition bg-white">
         
-        ${badgeHtml}
-
-        <div class="relative">
-            <img src="${p.imageUrl}" alt="${p.name}" class="mb-4 rounded-lg w-full h-48 object-cover">
-            ${badgeBottom}
-        </div>
-
-        <h4 class="font-bold text-lg mb-2">${p.name}</h4>
-        <p class="text-sm text-gray-600 mb-4">${p.desc}</p>
-        
-        <a href="${p.amazonLink}" target="_blank" rel="nofollow noopener" class="block text-center amazon-btn text-white font-bold py-3 rounded-lg">Ver en Amazon</a>
-    </div>
-`);
-// Esto hace que la pantalla se deslice suavemente hasta el contenedor
-    container.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
+        list.innerHTML += `
+            <div class="relative border rounded-xl md:rounded-2xl p-3 md:p-6 shadow-sm hover:shadow-md transition bg-white flex flex-col h-full">
+                ${badgeHtml}
+                <img src="${p.imageUrl}" alt="${p.name}" class="mb-2 md:mb-4 rounded-lg w-full h-32 md:h-48 object-cover">
+                <h4 class="font-bold text-sm md:text-lg mb-1 md:mb-2 leading-tight">${p.name}</h4>
+                <p class="text-[11px] md:text-sm text-gray-600 mb-2 md:mb-4 flex-grow">${p.desc}</p>
+                <p class="font-bold text-blue-900 text-sm md:text-base mb-2 md:mb-4">Precio: ${p.price}</p>
+                <a href="${p.amazonLink}" target="_blank" rel="nofollow noopener" class="block text-center amazon-btn text-white text-xs md:text-sm font-bold py-2 md:py-3 rounded-lg">Ver en Amazon</a>
+            </div>
+        `;
     });
+
+    container.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 
