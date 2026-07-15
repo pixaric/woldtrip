@@ -131,10 +131,33 @@
 
 // Base de datos de productos
 const products = [
-    { category: 'Tecnología', name: 'Auriculares Noise-Cancelling', badge: 'Nuevo', badgeBottom: 'Recomendado', desc: 'Calidad de sonido premium con cancelación activa.', price: '110€', amazonLink: 'https://amzn.to/4puMVze', imageUrl: 'https://m.media-amazon.com/images/I/71aUwxmG60L._AC_SX679_.jpg' },
-    { category: 'Tecnología', name: 'Smartwatch Pro', desc: 'Controla tu salud y notificaciones en tu muñeca.', price: '89€', amazonLink: 'https://amzn.to/TU_ENLACE_AQUI_2', imageUrl: 'https://m.media-amazon.com/images/I/71vC0cU6x-L._AC_SX679_.jpg' },
-    { category: 'Hogar', name: 'Robot Aspirador X1', badge: 'Rebajado', desc: 'Limpieza autónoma, olvídate de barrer.', price: '250€', amazonLink: 'https://amzn.to/TU_ENLACE_AQUI_3', imageUrl: 'https://m.media-amazon.com/images/I/71zvLQ2QJBL._AC_SX679_.jpg' },
-    { category: 'Fitness', name: 'Set de Mancuernas Ajustables', desc: 'Tu gimnasio personal en casa.', price: '45€', amazonLink: 'https://amzn.to/TU_ENLACE_AQUI_4', imageUrl: 'https://m.media-amazon.com/images/I/71V1Zq9VxBL._AC_SX679_.jpg' }
+    { category: 'Tecnología', 
+    name: 'Ventilador de Pie Portátil Plegable Oscilante', 
+    badge: 'mas vendido',  
+    desc: '8.6" 8000mAh Bateria Recargable USB C',  
+    amazonLink: 'https://amzn.to/4puMVze', 
+    imageUrl: 'https://m.media-amazon.com/images/I/71aUwxmG60L._AC_SX679_.jpg' },
+
+    { category: 'Tecnología', 
+    name: 'Diveblues Turbo Ventilador Portátil de Mano', 
+    desc: 'Alta Velocidad 10m/s, 5 Velocidades, Batería Recargable, Hasta 12 Horas de Uso', 
+    amazonLink: 'https://amzn.to/4w7A20v', 
+    imageUrl: 'https://m.media-amazon.com/images/I/61QamH6yj0L._AC_SL1500_.jpg' },
+
+    { category: 'Hogar', 
+    name: 'Robot Aspirador X1', 
+    badge: 'Rebajado', 
+    desc: 'Limpieza autónoma, olvídate de barrer.', 
+    price: '250€', 
+    amazonLink: 'https://amzn.to/TU_ENLACE_AQUI_3', 
+    imageUrl: 'https://m.media-amazon.com/images/I/71zvLQ2QJBL._AC_SX679_.jpg' },
+
+    { category: 'Fitness', 
+    name: 'Set de Mancuernas Ajustables', 
+    desc: 'Tu gimnasio personal en casa.', 
+    price: '45€', 
+    amazonLink: 'https://amzn.to/TU_ENLACE_AQUI_4', 
+    imageUrl: 'https://m.media-amazon.com/images/I/71V1Zq9VxBL._AC_SX679_.jpg' }
 ];
 
 function showSection(id) {
@@ -175,7 +198,7 @@ function filterProducts(category) {
 
         <h4 class="font-bold text-lg mb-2">${p.name}</h4>
         <p class="text-sm text-gray-600 mb-4">${p.desc}</p>
-        <p class="font-bold text-blue-900 mb-4">Precio: ${p.price}</p>
+        
         <a href="${p.amazonLink}" target="_blank" rel="nofollow noopener" class="block text-center amazon-btn text-white font-bold py-3 rounded-lg">Ver en Amazon</a>
     </div>
 `);
