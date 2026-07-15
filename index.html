@@ -170,6 +170,7 @@ function filterProducts(category) {
     const list = document.getElementById('product-list');
     const title = document.getElementById('category-title');
     
+    // Mostramos el contenedor y cambiamos el título
     container.classList.remove('hidden');
     title.innerText = `Productos en ${category}`;
     list.innerHTML = '';
@@ -202,7 +203,8 @@ function filterProducts(category) {
         <a href="${p.amazonLink}" target="_blank" rel="nofollow noopener" class="block text-center amazon-btn text-white font-bold py-3 rounded-lg">Ver en Amazon</a>
     </div>
 `);
-
+// Esto hace que la pantalla se deslice suavemente hasta el contenedor
+    container.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     });
 }
