@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TopSelección | Guías de Compra Expertas 2024</title>
+    <meta name="description" content="Tu guía de confianza para encontrar los mejores productos en Amazon. Análisis, comparativas y recomendaciones honestas.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .amazon-btn { background-color: #FF9900; transition: transform 0.2s; }
+        .amazon-btn:hover { background-color: #e68a00; transform: scale(1.02); }
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" onclick="showSection('home')" class="text-2xl font-bold text-blue-900 cursor-pointer">TopSelección</a>
+            <div class="hidden md:flex space-x-6 font-medium text-gray-600">
+                <a href="#" onclick="showSection('home')" class="hover:text-blue-600 cursor-pointer">Inicio</a>
+                <a href="#" onclick="showSection('categories')" class="hover:text-blue-600 cursor-pointer">Categorías</a>
+                <a href="#" onclick="showSection('blog')" class="hover:text-blue-600 cursor-pointer">Blog</a>
+                <a href="#" onclick="showSection('about')" class="hover:text-blue-600 cursor-pointer">Nosotros</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="content" class="min-h-screen">
+        
+        <!-- SECTION: HOME -->
+        <section id="home" class="view-section active">
+            <header class="bg-blue-900 text-white py-20 px-4 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">Comprar con inteligencia empieza aquí</h1>
+                <p class="text-xl mb-10 text-gray-200 max-w-2xl mx-auto">Analizamos, probamos y seleccionamos los mejores productos de Amazon para que tú solo tengas que disfrutar de tu compra.</p>
+                <button onclick="showSection('categories')" class="bg-white text-blue-900 px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:bg-gray-100 transition">Ver productos recomendados</button>
+            </header>
+            
+            <div class="py-16 max-w-6xl mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-8">¿Por qué confiar en nosotros?</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-4xl mb-4 block">✅</span>
+                        <h3 class="font-bold mb-2">Análisis objetivo</h3>
+                        <p class="text-gray-600">Probamos cada producto para darte opiniones reales.</p>
+                    </div>
+                    <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-4xl mb-4 block">🚚</span>
+                        <h3 class="font-bold mb-2">Envío Amazon</h3>
+                        <p class="text-gray-600">Compra con la seguridad y rapidez de Amazon.</p>
+                    </div>
+                    <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-4xl mb-4 block">💰</span>
+                        <h3 class="font-bold mb-2">Ahorro garantizado</h3>
+                        <p class="text-gray-600">Buscamos siempre la mejor relación calidad-precio.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="categories" class="view-section py-16 max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Explora nuestras categorías</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Data categories -->
+                <div onclick="filterProducts('Tecnología')" class="p-6 bg-white rounded-xl shadow-sm text-center border hover:border-blue-500 cursor-pointer transition">
+                    <span class="text-4xl mb-4 block">💻</span>
+                    <p class="font-semibold">Tecnología</p>
+                </div>
+                <div onclick="filterProducts('Hogar')" class="p-6 bg-white rounded-xl shadow-sm text-center border hover:border-blue-500 cursor-pointer transition">
+                    <span class="text-4xl mb-4 block">🏠</span>
+                    <p class="font-semibold">Hogar</p>
+                </div>
+                <div onclick="filterProducts('Fitness')" class="p-6 bg-white rounded-xl shadow-sm text-center border hover:border-blue-500 cursor-pointer transition">
+                    <span class="text-4xl mb-4 block">🏋️</span>
+                    <p class="font-semibold">Fitness</p>
+                </div>
+                <div onclick="filterProducts('Mascotas')" class="p-6 bg-white rounded-xl shadow-sm text-center border hover:border-blue-500 cursor-pointer transition">
+                    <span class="text-4xl mb-4 block">🐾</span>
+                    <p class="font-semibold">Mascotas</p>
+                </div>
+            </div>
+            
+            <div id="product-container" class="mt-16 hidden">
+                <h3 id="category-title" class="text-2xl font-bold mb-8">Productos</h3>
+                <div id="product-list" class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6"></div>
+                    <!-- Products injected here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="view-section py-16 max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center">Nuestro Blog</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <article class="border rounded-2xl p-6 shadow-sm hover:shadow-md transition">
+                    <h3 class="font-bold text-xl mb-2">Los 10 mejores gadgets para 2024</h3>
+                    <p class="text-gray-600 mb-4">Descubre la tecnología que está cambiando nuestra forma de vivir este año.</p>
+                    <a href="#" class="text-blue-600 font-semibold hover:underline">Leer artículo →</a>
+                </article>
+                <article class="border rounded-2xl p-6 shadow-sm hover:shadow-md transition">
+                    <h3 class="font-bold text-xl mb-2">Cómo elegir el mejor robot aspirador</h3>
+                    <p class="text-gray-600 mb-4">Guía completa para no equivocarte en tu compra y ahorrar tiempo en casa.</p>
+                    <a href="#" class="text-blue-600 font-semibold hover:underline">Leer artículo →</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="about" class="view-section py-16 max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-6">Sobre nosotros</h2>
+            <div class="prose text-gray-600 space-y-4">
+                <p>En <strong>TopSelección</strong>, nos apasiona la tecnología y la calidad de vida. Nuestro objetivo es ayudarte a filtrar el ruido de Amazon para que encuentres exactamente lo que necesitas.</p>
+                <h3 class="text-xl font-bold text-gray-800">Transparencia</h3>
+                <p>Participamos en el Programa de Afiliados de Amazon. Esto significa que si compras a través de nuestros enlaces, recibimos una pequeña comisión sin coste adicional para ti. Esto nos permite seguir creando contenido gratuito y de calidad.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 py-12 text-sm">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="mb-6 max-w-3xl mx-auto">
+                TopSelección es un sitio web de recomendaciones. Política de Privacidad | Cookies | Aviso Legal.
+            </p>
+            <p>© 2024 TopSelección. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+
+
+// Base de datos de productos
+const products = [
+    { category: 'Tecnología', 
+    name: 'Ventilador de Pie Portátil Plegable Oscilante', 
+    badge: 'mas vendido',  
+    desc: '8.6" 8000mAh Bateria Recargable USB C',  
+    amazonLink: 'https://amzn.to/4puMVze', 
+    imageUrl: 'https://m.media-amazon.com/images/I/71aUwxmG60L._AC_SX679_.jpg' },
+
+    { category: 'Tecnología', 
+    name: 'Diveblues Turbo Ventilador Portátil de Mano', 
+    desc: 'Alta Velocidad 10m/s, 5 Velocidades, Batería Recargable, Hasta 12 Horas de Uso', 
+    amazonLink: 'https://amzn.to/4w7A20v', 
+    imageUrl: 'https://m.media-amazon.com/images/I/61QamH6yj0L._AC_SL1500_.jpg' },
+
+    { category: 'Hogar', 
+    name: 'Robot Aspirador X1', 
+    badge: 'Rebajado', 
+    desc: 'Limpieza autónoma, olvídate de barrer.', 
+    price: '250€', 
+    amazonLink: 'https://amzn.to/TU_ENLACE_AQUI_3', 
+    imageUrl: 'https://m.media-amazon.com/images/I/71zvLQ2QJBL._AC_SX679_.jpg' },
+
+    { category: 'Fitness', 
+    name: 'Set de Mancuernas Ajustables', 
+    desc: 'Tu gimnasio personal en casa.', 
+    price: '45€', 
+    amazonLink: 'https://amzn.to/TU_ENLACE_AQUI_4', 
+    imageUrl: 'https://m.media-amazon.com/images/I/71V1Zq9VxBL._AC_SX679_.jpg' }
+];
+
+function showSection(id) {
+    document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+
+function filterProducts(category) {
+    const container = document.getElementById('product-container');
+    const list = document.getElementById('product-list');
+    const title = document.getElementById('category-title');
+    
+    container.classList.remove('hidden');
+    title.innerText = `Productos en ${category}`;
+    list.innerHTML = '';
+    
+    const filtered = products.filter(p => p.category === category);
+    
+    filtered.forEach(p => {
+        const badgeHtml = p.badge 
+            ? `<span class="absolute top-2 left-2 md:top-4 md:left-4 bg-yellow-400 text-black text-[9px] md:text-[10px] font-bold px-2 py-0.5 md:px-3 md:py-1 rounded-full shadow-lg z-10 uppercase tracking-wider">${p.badge}</span>` 
+            : '';
+        
+        list.innerHTML += `
+            <div class="relative border rounded-xl md:rounded-2xl p-3 md:p-6 shadow-sm hover:shadow-md transition bg-white flex flex-col h-full">
+                ${badgeHtml}
+                <img src="${p.imageUrl}" alt="${p.name}" class="mb-2 md:mb-4 rounded-lg w-full h-32 md:h-48 object-cover">
+                <h4 class="font-bold text-sm md:text-lg mb-1 md:mb-2 leading-tight">${p.name}</h4>
+                <p class="text-[11px] md:text-sm text-gray-600 mb-2 md:mb-4 flex-grow">${p.desc}</p>
+                <p class="font-bold text-blue-900 text-sm md:text-base mb-2 md:mb-4">Precio: ${p.price}</p>
+                <a href="${p.amazonLink}" target="_blank" rel="nofollow noopener" class="block text-center amazon-btn text-white text-xs md:text-sm font-bold py-2 md:py-3 rounded-lg">Ver en Amazon</a>
+            </div>
+        `;
+    });
+
+    container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+
+
+
+
+    </script>
+</body>
+</html>
