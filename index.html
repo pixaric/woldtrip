@@ -128,41 +128,50 @@
 
     <script>
         // Database of products
-        const products = [
-            { category: 'Tecnología', name: 'Auriculares Noise-Cancelling', desc: 'Calidad de sonido premium con cancelación activa.', price: '120€' },
-            { category: 'Tecnología', name: 'Smartwatch Pro', desc: 'Controla tu salud y notificaciones en tu muñeca.', price: '89€' },
-            { category: 'Hogar', name: 'Robot Aspirador X1', desc: 'Limpieza autónoma, olvídate de barrer.', price: '250€' },
-            { category: 'Fitness', name: 'Set de Mancuernas Ajustables', desc: 'Tu gimnasio personal en casa.', price: '45€' }
-        ];
+const products = [
+    { category: 'Tecnología', name: 'Auriculares Noise-Cancelling', badge: 'Nuevo', desc: 'Calidad de sonido premium con cancelación activa.', price: '110€' },
+    { category: 'Tecnología', name: 'Smartwatch Pro', desc: 'Controla tu salud y notificaciones en tu muñeca.', price: '89€' },
+    { category: 'Hogar', name: 'Robot Aspirador X1', badge: 'Rebajado', desc: 'Limpieza autónoma, olvídate de barrer.', price: '250€' },
+    { category: 'Fitness', name: 'Set de Mancuernas Ajustables', desc: 'Tu gimnasio personal en casa.', price: '45€' }
+];
 
-        function showSection(id) {
-            document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-        }
+function showSection(id) {
+    document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
 
-        function filterProducts(category) {
-            const container = document.getElementById('product-container');
-            const list = document.getElementById('product-list');
-            const title = document.getElementById('category-title');
-            
-            container.classList.remove('hidden');
-            title.innerText = `Productos en ${category}`;
-            list.innerHTML = '';
-            
-            const filtered = products.filter(p => p.category === category);
-            
-            filtered.forEach(p => {
-                list.innerHTML += `
-                    <div class="border rounded-2xl p-6 shadow-sm hover:shadow-md transition bg-white">
-                        <img src="https://placehold.co/300x200/e2e8f0/1e293b?text=${p.name}" class="mb-4 rounded-lg w-full">
-                        <h4 class="font-bold text-lg mb-2">${p.name}</h4>
-                        <p class="text-sm text-gray-600 mb-4">${p.desc}</p>
-                        <p class="font-bold text-blue-900 mb-4">Precio: ${p.price}</p>
-                        <a href="#" class="block text-center amazon-btn text-white font-bold py-3 rounded-lg">Ver en Amazon</a>
-                    </div>
-                `;
-            });
-        }
+function filterProducts(category) {
+    const container = document.getElementById('product-container');
+    const list = document.getElementById('product-list');
+    const title = document.getElementById('category-title');
+    
+    container.classList.remove('hidden');
+    title.innerText = `Productos en ${category}`;
+    list.innerHTML = '';
+    
+    const filtered = products.filter(p => p.category === category);
+    
+    filtered.forEach(p => {
+        // Lógica: Si el producto tiene un badge, creamos el HTML. Si no, lo dejamos vacío.
+        const badgeHtml = p.badge 
+            ? `<span class="absolute top-4 left-4 bg-yellow-400 text-black text-[10px] font-bold px-3 py-1 rounded-full shadow-lg z-10 uppercase tracking-wider">${p.badge}</span>` 
+            : '';
+        
+        // Importante: La clase 'relative' en el div principal es necesaria para que el badge se posicione bien.
+        list.innerHTML += `
+            <div class="relative border rounded-2xl p-6 shadow-sm hover:shadow-md transition bg-white">
+                ${badgeHtml}
+                <img src="https://placehold.co/300x200/e2e8f0/1e293b?text=${p.name}" class="mb-4 rounded-lg w-full">
+                <h4 class="font-bold text-lg mb-2">${p.name}</h4>
+                <p class="text-sm text-gray-600 mb-4">${p.desc}</p>
+                <p class="font-bold text-blue-900 mb-4">Precio: ${p.price}</p>
+                <a href="#" class="block text-center amazon-btn text-white font-bold py-3 rounded-lg">Ver en Amazon</a>
+            </div>
+        `;
+    });
+}
+
+        
     </script>
 </body>
 </html>
