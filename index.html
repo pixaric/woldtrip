@@ -82,7 +82,7 @@ document.getElementById("root").innerHTML = cats.map(c => {
       <div class="p-7 flex flex-col">
         <span class="self-start bg-emerald-100 text-emerald-800 font-extrabold text-xs px-3 py-1 rounded-full">Nuestra elección</span>
         <h3 class="text-2xl font-extrabold mt-3">${top.n}</h3>
-        <div class="mt-1">${stars(top, "Valoración del editor")}</div>
+        <div class="mt-1">${stars(top, "Valoración de Amazon")}</div>
         <p class="text-mut mb-4">${top.w}</p>
         <ul class="mb-5 flex-1">${li(top.v)}</ul>
         <a href="${href(top)}" ${REL} class="${BTN}">Ver precio en Amazon</a>
