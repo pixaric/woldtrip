@@ -52,6 +52,9 @@ tailwind.config = { theme: { extend: { colors: { ink:'#0e1b2c', mut:'#4d5b70', c
 <script>
 const esc = t => t.replace(/"/g, "&quot;");
 const pic = (p, icon, cls) => p.img ? `<img src="${esc(p.img)}" alt="${esc(p.n)}" loading="lazy" class="${cls}">` : icon;
+const stars = (p, label) => !p.stars ? "" : `<span class="inline-flex items-center gap-2 text-sm" aria-label="Valoración ${p.stars} de 5">
+  <span class="relative inline-block leading-none text-lg text-slate-300" aria-hidden="true">★★★★★<span class="absolute left-0 top-0 overflow-hidden whitespace-nowrap text-amber-400" style="width:${Math.min(p.stars, 5) / 5 * 100}%">★★★★★</span></span>
+  <b>${Number(p.stars).toFixed(1)}</b>${label ? `<span class="text-mut">${label}</span>` : ""}</span>`;
 const href = p => p.url || `https://www.amazon.es/s?k=${encodeURIComponent(p.q)}&tag=${TAG}`;
 const REL = 'target="_blank" rel="sponsored nofollow noopener"';
 const BTN = 'block text-center bg-cta hover:bg-ctah text-[#1a1100] font-extrabold py-3 px-4 rounded-xl shadow-[0_2px_0_#d46f0b] transition';
@@ -79,6 +82,7 @@ document.getElementById("root").innerHTML = cats.map(c => {
       <div class="p-7 flex flex-col">
         <span class="self-start bg-emerald-100 text-emerald-800 font-extrabold text-xs px-3 py-1 rounded-full">Nuestra elección</span>
         <h3 class="text-2xl font-extrabold mt-3">${top.n}</h3>
+        <div class="mt-1">${stars(top, "Valoración del editor")}</div>
         <p class="text-mut mb-4">${top.w}</p>
         <ul class="mb-5 flex-1">${li(top.v)}</ul>
         <a href="${href(top)}" ${REL} class="${BTN}">Ver precio en Amazon</a>
@@ -90,6 +94,7 @@ document.getElementById("root").innerHTML = cats.map(c => {
         <div class="bg-tint rounded-xl h-40 grid place-items-center text-5xl mb-3 overflow-hidden">${pic(p, c.i, "w-full h-full object-contain p-3")}</div>
         <span class="text-sm font-extrabold text-mut">Opción ${k + 2}</span>
         <h3 class="text-lg font-extrabold mt-2">${p.n}</h3>
+        <div>${stars(p)}</div>
         <p class="text-sm text-mut mb-3">${p.w}</p>
         <ul class="text-sm mb-4 flex-1">${li(p.v)}</ul>
         <a href="${href(p)}" ${REL} class="${BTN}">Ver precio en Amazon</a></article>`).join("")}
