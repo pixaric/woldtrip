@@ -10,7 +10,7 @@ const cats = [
  intro:"Pantallas WiFi que reciben fotos desde el móvil. Perfectas para regalar a quien está lejos.",
  guide:"Busca pantalla IPS, WiFi con app propia y al menos 16 GB. Si es para una persona mayor, elige el que se configura solo.",
  p:[
- {img:"", url:"https://m.media-amazon.com/images/I/71XkYtL8ZmL._AC_SL1500_.jpg", stars:4, n:'AEEZO WiFi 10,1" táctil', w:"La mejor opción para casi todos", v:["Pantalla IPS HD con giro automático","Envío de fotos desde la app"], q:"marco digital AEEZO WiFi 10.1 pulgadas"},
+ {img:"https://m.media-amazon.com/images/I/71XkYtL8ZmL._AC_SL1500_.jpg", url:"https://link.amazon/B0ikvtvLC", stars:4, n:'AEEZO WiFi 10,1" táctil', w:"La mejor opción para casi todos", v:["Pantalla IPS HD con giro automático","Envío de fotos desde la app"], q:"marco digital AEEZO WiFi 10.1 pulgadas"},
  {img:"", url:"", stars:4.6, n:"Pix-Star WiFi", w:"Para abuelos y regalos", v:["Recibe fotos por email","Admite vídeo y audio"], q:"marco digital Pix-Star WiFi"},
  {img:"", url:"", stars:0, n:"FUNCARE 32 GB", w:"Para muchas fotos y vídeos", v:["32 GB de memoria propia","No depende de la nube"], q:"marco digital FUNCARE 32GB"},
  {img:"", url:"", stars:0, n:'Nixplay WiFi 10,1"', w:"Para álbumes compartidos", v:["Gestión desde la app","Listas compartidas con la familia"], q:"marco digital Nixplay WiFi"},
