@@ -58,7 +58,8 @@ const stars = (p, label) => !p.stars ? "" : `<span class="inline-flex items-cent
 const href = p => p.url || `https://www.amazon.es/s?k=${encodeURIComponent(p.q)}&tag=${TAG}`;
 const REL = 'target="_blank" rel="sponsored nofollow noopener"';
 const BTN = 'block text-center bg-cta hover:bg-ctah text-[#1a1100] font-extrabold py-3 px-4 rounded-xl shadow-[0_2px_0_#d46f0b] transition';
-const li = v => v.map(x => `<li class="relative pl-6 my-1"><span class="absolute left-0 text-ok font-extrabold">✓</span>${x}</li>`).join("");
+const li = (v, mark = "✓", color = "text-ok") => v.map(x => `<li class="relative pl-6 my-1"><span class="absolute left-0 ${color} font-extrabold">${mark}</span>${x}</li>`).join("");
+const consList = c => c && c.length ? `<ul class="mt-1">${li(c, "✕", "text-rose-600")}</ul>` : "";
 
 // Menú
 document.getElementById("nav").insertAdjacentHTML("beforeend",
@@ -84,7 +85,7 @@ document.getElementById("root").innerHTML = cats.map(c => {
         <h3 class="text-2xl font-extrabold mt-3">${top.n}</h3>
         <div class="mt-1">${stars(top, "Valoración del editor")}</div>
         <p class="text-mut mb-4">${top.w}</p>
-        <ul class="mb-5 flex-1">${li(top.v)}</ul>
+        <div class="mb-5 flex-1"><ul>${li(top.v)}</ul>${consList(top.c)}</div>
         <a href="${href(top)}" ${REL} class="${BTN}">Ver precio en Amazon</a>
         <small class="block text-center text-xs text-mut mt-2">El precio actual lo ves en Amazon.es</small>
       </div>
@@ -96,7 +97,7 @@ document.getElementById("root").innerHTML = cats.map(c => {
         <h3 class="text-base sm:text-lg font-extrabold mt-2 leading-snug">${p.n}</h3>
         <div>${stars(p)}</div>
         <p class="text-xs sm:text-sm text-mut mb-3">${p.w}</p>
-        <ul class="text-xs sm:text-sm mb-4 flex-1">${li(p.v)}</ul>
+        <div class="text-xs sm:text-sm mb-4 flex-1"><ul>${li(p.v)}</ul>${consList(p.c)}</div>
         <a href="${href(p)}" ${REL} class="${BTN} !px-2 text-sm sm:text-base">Ver precio en Amazon</a></article>`).join("")}
     </div>
     <div class="bg-tint rounded-2xl p-5 mt-6"><b class="block mb-1">Cómo elegir</b>${c.guide}</div>
